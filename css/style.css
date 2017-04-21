@@ -1,0 +1,35 @@
+.descriptiveText
+{
+    #display: none;
+}
+label
+{
+    float: left;
+    #width: 300Px;
+}
+#content .field
+{
+    margin: 0px;
+    margin-bottom: 0.5em;
+}
+.left
+{
+    float: left;
+}
+.right
+{
+    float: right;
+}
+.cincuenta
+{
+    width: 34%;
+}
+.cien
+{
+    width: 99%;
+}
+#botones a
+{
+    margin-left: 3Px;
+    margin-right: 3Px;
+}

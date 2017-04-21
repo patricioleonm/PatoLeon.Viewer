@@ -1,0 +1,18 @@
+	<div class="detail_fieldset">
+		<h3>{$fieldset->getName()}</h3>
+			<p class="descriptiveText">
+			{$description}
+		</p>
+		
+		<table class="metadata" width="100%" cellpadding="5" cellspacing="0">
+		 {foreach item=aFieldPair from=$fieldset_values}
+			<tr>
+			<th width="20%">{$aFieldPair.field->getName()}</td>
+			<td class="descriptiveText">{if ($aFieldPair.value !== null)}{$aFieldPair.value}
+				{else}{i18n}no value{/i18n}{/if}</td>
+			</tr>
+		  {/foreach}
+		</table>
+	</div>
+	<div class="floatClear"><!-- --> </div>
+	<div style="margin-top: 0.5em"> </div>

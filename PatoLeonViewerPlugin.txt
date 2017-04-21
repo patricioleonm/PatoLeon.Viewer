@@ -1,0 +1,6 @@
+Author: Patricio León M. - patricioleonm@gmail.com
+Version: 1.0
+
+This software is licensed under the GPL v3 license.
+the installation instructions, release notes ans support information can be found at:
+http://www.patricioleon.cl/PatoLeonViewer

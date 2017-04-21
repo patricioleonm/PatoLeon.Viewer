@@ -1,0 +1,86 @@
+{literal}
+<style>
+table.metadata > tbody > tr > th { text-align: left; }
+table.metadata th, table.metadata td { border-bottom: 1px solid #ccc; }
+table.metadata tr.different th, table.metadata tr.different td { background-color: #f6fdbb; }
+
+</style>
+{/literal}
+
+<div class="detail_fieldset">
+    <h3>{i18n}Generic Information{/i18n}</h3>
+
+
+    <p class="descriptiveText">
+        {i18n}The information in this section is stored by KnowledgeTree&trade; for every
+        document.{/i18n}
+    </p>
+
+    <table class="metadata versioned" width="100%" cellpadding="5" cellspacing="0">
+
+{capture assign="oldval"}{$comparison_filename} ({$context->_sizeHelper($comparison_document->getSize())}){/capture}
+{capture assign="newval"}{$filename} ({$context->_sizeHelper($document->getSize())}){/capture}   
+<tr {if ($newval != $oldval)}class="different"{/if}>
+        <th width="20%">{i18n}Document Filename{/i18n}</th>
+        <td width="40%" >{$newval}</td>
+        <td width="40%" class="descriptiveText">{$oldval}</td>
+</tr>
+
+{capture assign="oldval"}{$context->_mimeHelper($comparison_document->getMimeTypeID())}{/capture}
+{capture assign="newval"}{$context->_mimeHelper($document->getMimeTypeID())}{/capture}    
+<tr {if ($newval != $oldval)}class="different"{/if}>
+        <th width="20%">{i18n}File is a{/i18n} </th>
+        <td width="40%">{$newval}</td>
+        <td width="40%">{$oldval}</td>        
+</tr>
+
+<tr>
+        <th width="20%">{i18n}Created by{/i18n}</th>
+        <td colspan="2" >{$creator} ({$creation_date}) <span class="descriptiveText">({i18n}this cannot not change between versions{/i18n})</span></td>
+</tr>
+
+{capture assign="oldval"}{$comparison_last_modified_by} ({$comparison_last_modified_date}){/capture}
+{capture assign="newval"}{$last_modified_by} ({$last_modified_date}){/capture}   
+<tr {if ($newval != $oldval)}class="different"{/if}>
+        <th width="20%">{i18n}Last update by{/i18n}</th>
+   
+        <td width="40%">{$newval}</td>
+        <td width="40%">{$oldval}</td>        
+</tr>
+
+{capture assign="oldval"}{$comparison_document_type}{/capture}
+{capture assign="newval"}{$document_type}{/capture}       
+<tr {if ($newval != $oldval)}class="different"{/if}>
+        <th width="20%">{i18n}Document Type{/i18n}</th>
+
+        <td width="40%">{$newval}</td>
+        <td width="40%">{$oldval}</td>        
+</tr>
+
+{capture assign="oldval"}{if $comparison_workflow_state}
+{$comparison_workflow_state->getName()}
+{else}
+{i18n}No workflow{/i18n}
+{/if}{/capture}
+{capture assign="newval"}{if $workflow_state}
+{$workflow_state->getName()}
+{else}
+{i18n}No workflow{/i18n}
+{/if}{/capture}
+<tr {if ($newval != $oldval)}class="different"{/if}>
+        <th width="20%">{i18n}Workflow status{/i18n}</th>
+
+        <td width="40%">{$newval}</td>
+        <td width="40%">{$oldval}</td>        
+</tr>
+
+
+<tr>
+        <th width="20%">{i18n}Document ID{/i18n}</th>            
+        <td colspan="2" >{$document->getId()} <span class="descriptiveText">({i18n}this cannot not change between versions{/i18n})</span></td>
+</tr>
+
+    </table>
+    <div class="floatClear"><!-- --> </div>
+    <div style="margin-top: 0.5em"> </div>
+</div>

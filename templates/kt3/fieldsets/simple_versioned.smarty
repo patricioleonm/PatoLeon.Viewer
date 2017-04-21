@@ -1,0 +1,27 @@
+<div class="detail_fieldset">
+    <h3>{i18n}Generic Information{/i18n}</h3>
+
+<!--
+    <p class="descriptiveText">
+        {i18n}The information in this section is stored by KnowledgeTree&trade; for every
+        document.{/i18n}
+    </p>
+-->
+    <table class="metadata versioned" width="100%" cellpadding="5" cellspacing="0">
+    {foreach item=aFieldPair from=$fieldset_values}
+    
+{capture assign="oldval"}{$comparison_filename}{if ($aFieldPair.current_value !== null)}{$aFieldPair.current_value}
+{else}<span class="descriptiveText">no value in this version</span>{/if}{/capture}
+{capture assign="newval"}{$filename}{if ($aFieldPair.previous_value !== null)}{$aFieldPair.previous_value}
+{else}<span class="descriptiveText">no value in this version</span>{/if}{/capture}        
+<tr {if ($newval != $oldval)}class="different"{/if}>
+        <th width="20%">{$aFieldPair.field->getName()}</th>
+        <td width="40%">{$newval}</td>
+        <td width="40%">{$oldval}</td>        
+
+</tr>
+    {/foreach}
+
+     </table>    
+    <div class="floatClear"><!-- --> </div>
+</div>

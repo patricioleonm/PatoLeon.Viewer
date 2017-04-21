@@ -1,0 +1,36 @@
+<!-- unforunate, but (currently) necessary -->
+
+{$context->oPage->requireJSResource('resources/js/taillog.js')}
+{$context->oPage->requireJSResource('resources/js/conditional_usage.js')}
+
+{$context->oPage->requireCSSResource('resources/css/kt-treewidget.css')}
+{$context->oPage->requireCSSResource('plugins/PatoLeon/css/style.css')}
+{$context->oPage->requireJSResource('plugins/PatoLeon/js/PatoLeon.js')}
+
+<div id="botones">
+{if $viewer }<a href="javascript:swapPanel()">{i18n}Change{/i18n}</a>|{/if}
+{if $PrevNext[0]}<a href="action.php?kt_path_info=ktcore.actions.document.edit&fDocumentId={$PrevNext[0]}">{i18n}prev{/i18n}</a>{/if}
+{if $PrevNext[1]}<a href="action.php?kt_path_info=ktcore.actions.document.edit&fDocumentId={$PrevNext[1]}">{i18n}Next{/i18n}</a>{/if}
+</div>
+<div id="metadata" class="left {if $viewer}cincuenta{else}cien{/if}">
+<h2><img src="{if $config->get("ui/morphEnabled") == '1'}{$rootUrl}/skins/kts_{$config->get("ui/morphTo")}/title_bullet.png{else}{$rootUrl}/resources/graphics/title_bullet.png{/if}"/>{i18n}Edit Metadata{/i18n}:<br />{$context->oDocument->getName()|sanitize}</h2>
+
+{capture assign=link}{addQS}action=selectType&fDocumentId={$document->getId()}{/addQS}{/capture}
+<p class="descriptiveText">{i18n arg_link=$link arg_name=$type_name}Change the <strong><a href="#link#">document type</a></strong>. The current type is "#name#"{/i18n}</p>
+
+<p class="descriptiveText">{i18n}The following document metadata is available for editing.{/i18n}</p>
+
+{$form->render()}
+</div>
+{if $viewer}
+<div id="viewer" class="right" style="width: 65%;">
+	{$viewer}
+</div>
+{/if}
+{*
+<table id="brad-log">
+<tbody>
+</tbody>
+</table>
+</div>
+*}

@@ -1,0 +1,60 @@
+{literal}
+<style>
+table.metadata > tbody > tr > th { text-align: left; }
+table.metadata th, table.metadata td { border-bottom: 1px solid #ccc; }
+table.metadata tr.different th, table.metadata tr.different td { background-color: #f6fdbb; }
+
+</style>
+{/literal}
+<div class="detail_fieldset">
+    <h3>{i18n}Generic Information{/i18n}</h3>
+
+
+    <p class="descriptiveText">
+        {i18n}The information in this section is stored by KnowledgeTree&trade; for every
+        document.{/i18n}
+    </p>
+
+    <table class="metadata" width="100%" cellpadding="5" cellspacing="0">
+
+<tr>
+        <th width="20%">{i18n}Document Filename{/i18n}</th>
+        <td class="descriptiveText">{$filename} ({$context->_sizeHelper($document->getSize())})</td>
+</tr>
+        
+<tr>
+        <th width="20%">{i18n}File is a{/i18n} </th>
+        <td class="descriptiveText">{$context->_mimeHelper($document->getMimeTypeID())}</td>
+</tr>
+
+<tr>
+        <th width="20%">{i18n}Created by{/i18n}</th>
+        <td class="descriptiveText">{$creator} ({$creation_date})</td>
+</tr>
+
+<tr>
+        <th width="20%">{i18n}Last update by{/i18n}</th>
+        <td class="descriptiveText">{$last_modified_by} ({$last_modified_date})</td>
+</tr>
+
+<tr>
+        <th width="20%">{i18n}Document Type{/i18n}</th>
+        <td class="descriptiveText">{$document_type}</td>
+
+</tr>
+<tr>
+        <th width="20%">{i18n}Workflow status{/i18n}</th>
+        <td class="descriptiveText">
+{if $workflow_state}
+{$workflow_state->getName()}
+{else}
+{i18n}No workflow{/i18n}
+{/if}
+{assign var=iDocumentId value=$document->getId()}
+ (<a href="{ktLink base="action.php" subpath="/ktcore.actions.document.workflow" query="fDocumentId=`$iDocumentId`"}">{i18n}manage workflow{/i18n}</a>)
+</td>
+</tr>
+    </table>
+    <div class="floatClear"><!-- --> </div>
+    <div style="margin-top: 0.5em"> </div>
+</div>
